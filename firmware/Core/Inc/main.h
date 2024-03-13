@@ -75,8 +75,12 @@ void Error_Handler(void);
 #define ENABLE_GPIO_Port GPIOB
 #define W_H_Pin GPIO_PIN_8
 #define W_H_GPIO_Port GPIOA
+#define V_L_Pin GPIO_PIN_9
+#define V_L_GPIO_Port GPIOA
 #define V_H_Pin GPIO_PIN_6
 #define V_H_GPIO_Port GPIOC
+#define U_L_Pin GPIO_PIN_10
+#define U_L_GPIO_Port GPIOA
 #define U_H_Pin GPIO_PIN_11
 #define U_H_GPIO_Port GPIOA
 #define CS_Pin GPIO_PIN_6
