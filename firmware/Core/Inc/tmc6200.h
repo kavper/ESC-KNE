@@ -164,4 +164,37 @@
 #define TMC6200_SHORT_CONF     0x09
 #define TMC6200_DRV_CONF       0x0A
 
+
+//
+// Used four SPI/standalone configuration
+//
+
+#define TMC6200_SINGLE_DRVSTREN_0_5A 	0x01
+#define TMC6200_SINGLE_DRVSTREN_0_5_1A  0x02
+#define TMC6200_SINGLE_DRVSTREN_1A  	0x03
+#define TMC6200_SINGLE_DRVSTREN_1_5A	0x04
+
+#define TMC6200_SINGLE_SENSEAMP_5 		0x05
+#define TMC6200_SINGLE_SENSEAMP_10		0x06
+
+#define TMC6200_SINGLE_INDIVIDUAL		0x07
+#define TMC6200_SINGLE_POL_ENABLE 		0x08
+
+#define TMC6200_MODE_SPI 				GPIO_PIN_SET
+#define TMC6200_MODE_STANDALONE 		GPIO_PIN_RESET
+
+
+// NOTE: Please make sure these pins are properly set to GPIO_Output in STM32CubeMX.
+
+#define SPE_PORT						// NOTE: SPE pin is currently hard-soldered to 3.3V and is not connected to STM32. 
+#define SPE_PIN							// TODO: Define port/pin when it's connected properly.
+
+#define SPI_PORT						GPIOB
+
+#define CS_IDRV0_PIN 					GPIO_PIN_6
+#define SCK_IDRV1_PIN 					GPIO_PIN_3
+#define SDI_MOSI_AMLPX10_PIN 			GPIO_PIN_5
+#define SDO_MISO_SINGLE_PIN 			GPIO_PIN_4
+
+
 #endif
