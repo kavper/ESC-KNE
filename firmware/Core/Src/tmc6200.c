@@ -3,7 +3,7 @@
 
 int32_t tmc6200_readInt(uint8_t motor, uint8_t address)
 {	
-	// SOU data sent/received is 40 bit. That's why we should use uint64_t.
+	// SPI data sent/received is 40 bit. That's why we should use uint64_t.
 
 	uint64_t rxbuffer;
 	
