@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "name": "STM32",
+      "includePath": [
+        "Core/Inc",
+        "Drivers/CMSIS/Device/ST/STM32C0xx/Include",
+        "Drivers/CMSIS/Include",
+        "Drivers/STM32C0xx_HAL_Driver/Inc",
+        "Drivers/STM32C0xx_HAL_Driver/Inc/Legacy"
+      ],
+      "defines": [
+        "STM32C031xx",
+        "USE_HAL_DRIVER"
+      ]
+    }
+  ],
+  "version": 4
+}

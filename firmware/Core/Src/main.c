@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "esc_state_machine.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -93,9 +93,8 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM14_Init();
   MX_TIM17_Init();
-  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -103,7 +102,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+    ESC_nextState();
+    HAL_Delay(500);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

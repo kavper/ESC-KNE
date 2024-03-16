@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "showDevDebugOutput": "parsed",
+            "cwd": "${workspaceRoot}",
+            "executable": "./build/firmware.elf",
+            "name": "Debug STM32",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "device": "STM32C031K4.s",
+            "configFiles": [
+                "openocd.cfg"
+            ],
+            //"svdFile": "" //file for cpu register names and addresses
+        },
+        {
+            "showDevDebugOutput": "parsed",
+            "cwd": "${workspaceRoot}",
+            "executable": "./build/firmware.elf",
+            "name": "Attach STM32",
+            "request": "attach",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "device": "STM32C031K4.s",
+            "configFiles": [
+                "openocd.cfg"
+            ],
+            //"svdFile": ""
+        }
+    ]
+}

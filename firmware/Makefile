@@ -37,6 +37,7 @@ BUILD_DIR = build
 # C sources
 C_SOURCES =  \
 Core/Src/main.c \
+Core/Src/esc_state_machine.c \
 Core/Src/gpio.c \
 Core/Src/adc.c \
 Core/Src/spi.c \
