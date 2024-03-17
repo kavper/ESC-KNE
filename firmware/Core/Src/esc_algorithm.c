@@ -1,9 +1,43 @@
-#include "esc_state_machine.h"
+#include "esc_algorithm.h"
 
 static uint8_t state = 0;
 
+
+HAL_StatusTypeDef ESC_init(ESC_stateMachine_t *esc){
+    // return HAL_ADCEx_Calibration_Start(esc->hadc);
+    return HAL_OK;
+}
+
 void ESC_reset(){
     state = 0;
+}
+
+/**
+ * @brief This is slow ESC_measureVoltage implementation
+ *        for testing purposes only.
+ *        
+ *        TODO: use DMA
+ * 
+ * @note This function can only be used in sequence and discontinuous
+ *       ADC conversion mode only. Chanel ranks: (Rank 1: CH2, 
+ *       Rank 2: CH3, RANK 3: CH4)
+ * 
+ * @param esc 
+ */
+void ESC_measureVoltage(ESC_stateMachine_t *esc){
+    HAL_ADC_Start(esc->hadc);
+    HAL_ADC_PollForConversion(esc->hadc, HAL_MAX_DELAY);
+    esc->volt_u = (3.3f * HAL_ADC_GetValue(esc->hadc)) / MAX_ADC_VALUE;
+
+    HAL_ADC_Start(esc->hadc);
+    HAL_ADC_PollForConversion(esc->hadc, HAL_MAX_DELAY);
+    esc->volt_v = (3.3f * HAL_ADC_GetValue(esc->hadc)) / MAX_ADC_VALUE;
+    
+    HAL_ADC_Start(esc->hadc);
+    HAL_ADC_PollForConversion(esc->hadc, HAL_MAX_DELAY);
+    esc->volt_w = (3.3f * HAL_ADC_GetValue(esc->hadc)) / MAX_ADC_VALUE;
+
+    HAL_ADC_Stop(esc->hadc);
 }
 
 void ESC_nextState(){

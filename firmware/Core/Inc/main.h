@@ -69,8 +69,8 @@ void Error_Handler(void);
 #define CUR_U_GPIO_Port GPIOA
 #define CUR_V_Pin GPIO_PIN_6
 #define CUR_V_GPIO_Port GPIOA
-#define VOLT_WA7_Pin GPIO_PIN_7
-#define VOLT_WA7_GPIO_Port GPIOA
+#define CUR_W_Pin GPIO_PIN_7
+#define CUR_W_GPIO_Port GPIOA
 #define W_L_Pin GPIO_PIN_2
 #define W_L_GPIO_Port GPIOB
 #define W_H_Pin GPIO_PIN_8

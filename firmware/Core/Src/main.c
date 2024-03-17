@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "esc_state_machine.h"
+#include "esc_algorithm.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,7 +46,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+ESC_stateMachine_t esc;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -94,7 +94,8 @@ int main(void)
   MX_TIM14_Init();
   MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
-  
+  esc.hadc = &hadc1;
+  ESC_init(&esc);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -102,9 +103,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    ESC_nextState();
-    HAL_Delay(500);
+
     /* USER CODE BEGIN 3 */
+    ESC_measureVoltage(&esc);
+    HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
