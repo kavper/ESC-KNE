@@ -1,19 +1,20 @@
 #include "tmc6200.h"
 #include <spi.h>
 
-int32_t tmc6200_readInt(uint8_t motor, uint8_t address)
+uint64_t tmc6200_readInt(uint8_t address)
 {	
+
 	// SPI data sent/received is 40 bit. That's why we should use uint64_t.
 
-	uint64_t rxbuffer;
-	
+	uint64_t rxbuffer = {};
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
 
 	HAL_SPI_TransmitReceive(TMC6200_SPI, address, rxbuffer, sizeof(address), 100);
 
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);
 	return rxbuffer;
-
+	
+	
 
 }
 
@@ -77,10 +78,11 @@ void tmc6200_setDriverStrength(int strength) {
 			break;
 		
 	}
+}
 
 // Sets sense amplification in standalone mode
-void tmc6200_setSenseAmplification(int amp) {//
-	switch(strength){
+void tmc6200_setSenseAmplification(int amp) {
+	switch(amp){
 		case(TMC6200_SINGLE_SENSEAMP_5):
 			HAL_GPIO_WritePin(SPI_PORT, SDI_MOSI_AMLPX10_PIN, GPIO_PIN_RESET);
 			break;
@@ -88,10 +90,10 @@ void tmc6200_setSenseAmplification(int amp) {//
 			HAL_GPIO_WritePin(SPI_PORT, SDI_MOSI_AMLPX10_PIN, GPIO_PIN_SET);
 			break;
 	}
-
+}
 // Switches between individual gate control and polarity/enable control in standalone mode
 void tmc6200_setGateControl(int control) {
-	switch(strength){
+	switch(control){
 		case(TMC6200_SINGLE_INDIVIDUAL):
 			HAL_GPIO_WritePin(SPI_PORT, SDO_MISO_SINGLE_PIN, GPIO_PIN_RESET);
 			break;
@@ -100,3 +102,20 @@ void tmc6200_setGateControl(int control) {
 			break;
 	}
 }
+
+TMC6200_t TMC6200_getDefaultConf() {
+	TMC6200_t ret;
+	ret.drv_strength = TMC6200_SINGLE_DRVSTREN_0_5A;
+	ret.sense_amp = TMC6200_SINGLE_SENSEAMP_5;
+	ret.gate_ctrl = TMC6200_SINGLE_INDIVIDUAL;
+
+	return ret;
+
+}
+
+void TMC6200_init(TMC6200_t *conf) {
+	tmc6200_setDriverStrength(conf->drv_strength);
+	tmc6200_setSenseAmplification(conf->sense_amp);
+	tmc6200_setGateControl(conf->gate_ctrl);
+}
+

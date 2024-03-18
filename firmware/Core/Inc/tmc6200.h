@@ -24,6 +24,7 @@
 	#define TMC6200_SHORT_CONF     0x09
 	#define TMC6200_DRV_CONF       0x0A
 
+uint64_t tmc6200_readInt(uint8_t address);
 
 //
 // FIELDS
@@ -186,8 +187,8 @@
 
 // NOTE: Please make sure these pins are properly set to GPIO_Output in STM32CubeMX.
 
-#define SPE_PORT						// NOTE: SPE pin is currently hard-soldered to 3.3V and is not connected to STM32. 
-#define SPE_PIN							// TODO: Define port/pin when it's connected properly.
+#define SPE_PORT						0// NOTE: SPE pin is currently hard-soldered to 3.3V and is not connected to STM32. 
+#define SPE_PIN							0// TODO: Define port/pin when it's connected properly.
 
 #define SPI_PORT						GPIOB
 
@@ -196,5 +197,25 @@
 #define SDI_MOSI_AMLPX10_PIN 			GPIO_PIN_5
 #define SDO_MISO_SINGLE_PIN 			GPIO_PIN_4
 
+void tmc6200_setGateControl(int control);
+void tmc6200_setSenseAmplification(int amp);
+void tmc6200_setDriverStrength(int strength);
+void tmc6200_setMode(int mode);
+void uint64_to_bits(uint64_t data, int bits_array[]);
+
+typedef struct {
+	int drv_strength;
+	int sense_amp;
+	int gate_ctrl;
+} TMC6200_t;
+
+typedef struct {
+	int drv_strength;
+	int sense_amp;
+	int gate_ctrl;
+} TMC6200_adv_zt;
+
+TMC6200_t TMC6200_getDefaultConf();
+void TMC6200_init(TMC6200_t *conf);
 
 #endif
