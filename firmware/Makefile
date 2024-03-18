@@ -61,7 +61,8 @@ Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_spi.c \
 Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_spi_ex.c \
 Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_tim.c \
 Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_tim_ex.c \
-Core/Src/system_stm32c0xx.c  
+Core/Src/system_stm32c0xx.c  \
+Core/Src/tmc6200.c
 
 # ASM sources
 ASM_SOURCES =  \
