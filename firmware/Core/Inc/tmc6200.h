@@ -11,12 +11,6 @@
 //
 
 
-
-//#define TMC6200_FIELD_READ(tdef, address, mask, shift) \
-	FIELD_GET(HAL_SPI_Receive(&hspi1, address | mask)
-//#define TMC6200_FIELD_UPDATE(tdef, address, mask, shift, value) \
-	(tmc6200_writeInt(tdef, address, FIELD_SET(tmc6200_readInt(tdef, address), mask, shift, value)))
-	
 	
 	#define TMC6200_OTP_PROG       0x06
 	#define TMC6200_OTP_READ       0x07
@@ -197,11 +191,16 @@ uint64_t tmc6200_readInt(uint8_t address);
 #define SDI_MOSI_AMLPX10_PIN 			GPIO_PIN_5
 #define SDO_MISO_SINGLE_PIN 			GPIO_PIN_4
 
+#define DRV_ENABLE_PORT					GPIOB
+#define DRV_ENABLE_PIN  				GPIO_PIN_7
+
 void tmc6200_setGateControl(int control);
 void tmc6200_setSenseAmplification(int amp);
 void tmc6200_setDriverStrength(int strength);
 void tmc6200_setMode(int mode);
 void uint64_to_bits(uint64_t data, int bits_array[]);
+void tmc6200_enable();
+void tmc6200_disable();
 
 typedef struct {
 	int drv_strength;
